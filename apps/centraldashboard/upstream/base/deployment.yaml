@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         app: centraldashboard
-        sidecar.istio.io/inject: "true"
+        sidecar.istio.io/inject: "false"
     spec:
       containers:
       - name: centraldashboard

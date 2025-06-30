@@ -83,7 +83,7 @@ spec:
     template:
       metadata:
         labels:
-          sidecar.istio.io/inject: "true"
+          sidecar.istio.io/inject: "false"
       spec:
         serviceAccountName: default-editor
         containers:
@@ -133,7 +133,7 @@ spec:
       template:
         metadata:
           labels:
-            sidecar.istio.io/inject: "true"
+            sidecar.istio.io/inject: "false"
         spec:
           serviceAccountName: default-editor
           containers:
