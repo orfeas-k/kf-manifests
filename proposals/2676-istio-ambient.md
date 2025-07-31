@@ -1,11 +1,17 @@
 # KEP-2676: Support Istio ambient in Kubeflow
 
+> [!NOTE]
+> The KEP's number refer to issue https://github.com/kubeflow/manifests/issues/2676. The KEP is sent against `kubeflow/community` since the proposed changes involve multiple Kubeflow components, not just manifests.
+
 ## Authors
 1. Orfeas Kourkakis
 2. Kimonas Sotirchos
 
 ## Summary
-The Kubeflow Manifests is a collection of community-maintained manifests for installing Kubeflow. Right now, the installation ships with Istio as its service mesh, which is configured to use the sidecar mode. In 2022, Istio launched a new operation mode, called ambient, which aims addressing the shortcomings present in the sidecar mode. In order for Kubeflow users to benefit from the reduced resource footprint and simplified operations in ambient mode, this proposal defines the changes needed to make Kubeflow ambient-compatible. At the same time, it proposes a setup that uses Istio in ambient and enables the same Authorization and Authentication use cases. This setup will be provided as an installation option, being an overlay in the `kubeflow/manifests` repository.
+Kubeflow components integrate with Istio as their service mesh, offering features that enable routing as well as authorization of authenticated users in control-plane components and user workloads. In that spirit, `kubeflow/manifests` repository provides an installation using Istio as its service mesh.
+
+Rigth now, all Kubeflow components are compatible with Istio's sidecar mode. In 2022, Istio launched a new operation mode, called ambient, which aims addressing the shortcomings present in the sidecar mode. In order for Kubeflow users to benefit from the reduced resource footprint and simplified operations in ambient mode, this proposal defines the changes needed to make Kubeflow component ambient-compatible. At the same time, it outlines a setup that uses Istio in ambient and enables the same Authorization and Authentication use cases.
+
 ## Motivation
 Adopting Istio's ambient mode offers immediate operational benefits while strategically aligning Kubeflow with the future of Kubernetes networking. The primary motivations for this change are:
 * **Reduced resource footprint**: Ambient mode significantly lowers the CPU and memory overhead for users across the cluster by replacing hundreds or thousands of sidecar proxies with a single ztunnel per node and, optionally, some envoy proxy deployments (waypoints).
